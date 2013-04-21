@@ -42,7 +42,7 @@ class Patient
 	 */
 	public String toString()
 	{
-		String information = "Priority: " + priority + "Name: " + getName() + "Malady: " + getMalady();
+		String information = "[ Priority: " + getPriority()+ " Name: " + getName() + " Malady: " + getMalady()+" ]";
 		return information;
 
 	}
@@ -53,9 +53,13 @@ class Patient
 	public int compareTo(Patient obj)
 	{
 		int moreSrious = 0;
-		if(this.getPriority <= obj.getPriority())
+		if(this.getPriority() <= obj.getPriority())
 		{
 			moreSrious = obj.getPriority();
+		}
+		else
+		{
+			moreSrious = this.getPriority();
 		}
 		return moreSrious;
 
