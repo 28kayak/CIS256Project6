@@ -12,7 +12,7 @@ class Heap <E>
 	 */
 	public Heap(int maxSize)
 	{
-		elements = (E()) new Object[maxSize];
+		elements =  new E[maxSize];
 		lastIndex = -1;
 		maxIndex = maxSize -1;
 
@@ -21,7 +21,7 @@ class Heap <E>
 	 * [inEmpty determin whether this heap is empty]
 	 * @return [if lastIndex remains -1, return true, that is, empty]
 	 */
-	public boolean inEmpty()
+	public boolean isEmpty()
 	{
 		return (lastIndex == -1);
 	}
@@ -47,23 +47,12 @@ class Heap <E>
 		}
 		else
 		{
-			for(int i = 0; i <= lastIndex; i++)
-			{
-				if(elements[i] < items)
-				{ 
-					where = i;
-					while(i <= lastIndex)
-					{
-						elements[i + 1] = elements[i];
-						i++;
-					}
-					elements[i] = item;
-				}
-				else 
-				{
-					
-				}
-			}
+			 E[lastIndex] = item;
+			 upTrade(lastIndex);
+				
+
+				
+			
 		}
 	}
 	/**
@@ -71,9 +60,16 @@ class Heap <E>
 	 * @return [description]
 	 * @throws PriQUnderflowException [if heap is empty]
 	 */
-	public E remove() throws PriQUnderflowException
+	public E remove() 
 	{
-		//complete this method 
+		if(isEmpty())
+		{
+			throw new PriQunderflowException("---This Heap is EMPTY---");
+		} 
+		else
+		{
+
+		}
 		return null;
 	}
 	/**
@@ -90,4 +86,26 @@ class Heap <E>
 		return theHeap;
 
 	}
-}
+	public int upTrade(int index)
+	{
+		if((elements[index] > elements[index % 2]) && (index != 1))
+		{
+			elements[index] = elements[index % 2];
+		}		
+		else
+		{
+			return upTrade(index);
+		}
+	}
+	public int downTrade(int index)
+	{
+		if((elements[index] < elements[index * 2]) && ((index * 2 + 1) > maxIndex ))
+		{
+			elements[index % 2] = elements[index];
+		}
+		else
+		{
+			return downTrade(index);
+		}
+	}
+}//class 
