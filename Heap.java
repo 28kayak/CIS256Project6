@@ -1,3 +1,5 @@
+/*Heap class which children can only make sure if children is bigger than parant or not*/
+
 class Heap <E>
 {
 	
@@ -88,9 +90,13 @@ class Heap <E>
 	}
 	public int upTrade(int index)
 	{
+		E temp; 
 		if((elements[index] > elements[index % 2]) && (index != 1))
 		{
-			elements[index] = elements[index % 2];
+			temp = elements[index];//store value at elements[index] temporally 
+			elements[index] = elements[index % 2];//sudstitude parents value to a child
+			elements[index % 2] = temp;//re-store value at elements[index]
+
 		}		
 		else
 		{
